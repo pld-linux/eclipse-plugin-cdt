@@ -4,8 +4,8 @@ Name:		eclipse-plugin-cdt
 %define		_ver_major	2.0
 %define		_ver_minor	0
 Version:	%{_ver_major}
-Release:	0.1
-License:	CPL
+Release:	1
+License:	CPL v0.5
 Group:		Development/Languages
 Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/org.eclipse.cdt-%{version}-linux.gtk.x86.zip
 # Source0-md5:	15fbefa22a0baf1e9ed4139ce219ade4
