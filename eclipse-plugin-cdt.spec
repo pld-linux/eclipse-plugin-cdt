@@ -2,13 +2,14 @@ Summary:	CDT - a set of plugins for Eclipse that implement a C/C++ IDE
 Summary(pl):	CDT - zestaw wtyczek do ¶rodowiska Eclipse implementuj±cy IDE C/C++
 Name:		eclipse-plugin-cdt
 %define		_ver_major	2.0
-%define		_ver_minor	0
-Version:	%{_ver_major}
+%define		_ver_minor	2
+Version:	%{_ver_major}.%{_ver_minor}
 Release:	1
 License:	CPL v0.5
 Group:		Development/Languages
-Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/org.eclipse.cdt-%{version}-linux.gtk.x86.zip
-# Source0-md5:	15fbefa22a0baf1e9ed4139ce219ade4
+Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/org.eclipse.cdt-%{version}-linux.x86.zip
+# Source0-md5:	c6e3c5f74fddae54a8ff242b42de4ade
+# Source0-size:	8486704
 URL:		http://www.eclipse.org/cdt/
 Requires:	eclipse >= 3.0
 ExclusiveArch:	%{ix86} ppc
