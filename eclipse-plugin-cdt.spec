@@ -7,15 +7,19 @@ Version:	%{_ver_major}.%{_ver_minor}
 Release:	1
 License:	CPL v1.0
 Group:		Development/Languages
-%define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
-Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/%{version}/org.eclipse.cdt-%{version}-linux.%{_eclipse_arch}.zip
+Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/%{version}/org.eclipse.cdt-%{version}-linux.x86.zip
 # Source0-md5:	1542dee90e6c4451d51a8135f2860f41
+Source1:	http://download.eclipse.org/tools/cdt/releases/new/zips/%{version}/org.eclipse.cdt-%{version}-linux.ppc.zip
+# Source1-md5:	d7f15a696ba60dd3460c06117b4c2989
+Source2:	http://download.eclipse.org/tools/cdt/releases/new/zips/%{version}/org.eclipse.cdt-%{version}-linux.ia64.zip
+# Source2-md5:	04ee41cbe5bbcdf47d2199ede1ed7edc
 URL:		http://www.eclipse.org/cdt/
 BuildRequires:	unzip
 Requires:	eclipse >= 3.0
 ExclusiveArch:	%{ix86} ppc ia64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
 %define		_eclipsedir  	%{_libdir}/eclipse
 
 %description
@@ -28,7 +32,15 @@ Projekt CDT rozszerza zintegrowane ¶rodowisko programistyczne Eclipse
 o nowe elementy wspomagaj±ce tworzenie aplikacji w jêzykach C i C++.
 
 %prep
-%setup -q -c
+%ifarch %{ix86}
+%setup -q -c -T -b0
+%endif
+%ifarch ppc
+%setup -q -c -T -b1
+%endif
+%ifarch ia64
+%setup -q -c -T -b2
+%endif
 
 %build
 %ifnarch %{ix86}
