@@ -1,0 +1,3 @@
+- updated to 2.1.0.
+- license fixed.
+- exclusiveArch += ia64.
