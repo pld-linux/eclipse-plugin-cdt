@@ -4,7 +4,7 @@ Name:		eclipse-plugin-cdt
 %define		_ver_major	2.0
 %define		_ver_minor	2
 Version:	%{_ver_major}.%{_ver_minor}
-Release:	1
+Release:	2
 License:	CPL v0.5
 Group:		Development/Languages
 Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/org.eclipse.cdt-%{version}-linux.x86.zip
@@ -15,7 +15,8 @@ Requires:	eclipse >= 3.0
 ExclusiveArch:	%{ix86} ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_eclipsedir  %{_datadir}/eclipse
+%define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
+%define		_eclipsedir  	%{_libdir}/eclipse
 
 %description
 The CDT project adds a C/C++ Perspective to the Eclipse Workbench that
@@ -41,7 +42,7 @@ rm -r eclipse/plugins/org.eclipse.cdt.core.linux_%{_ver_major}.%{_ver_minor}/os/
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_eclipsedir}/{features,plugins}
 
-cp -r * $RPM_BUILD_ROOT%{_datadir}
+cp -r * $RPM_BUILD_ROOT%{_libdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -49,4 +50,26 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %{_eclipsedir}/features/*
-%{_eclipsedir}/plugins/*
+%dir %{_eclipsedir}/plugins
+%{_eclipsedir}/plugins/org.eclipse.cdt_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.core_*.*.*
+
+%dir %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*
+%dir %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/os
+%dir %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/os/linux
+%dir %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/os/linux/%{_eclipse_arch}
+%attr(755,root,root) %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/os/linux/%{_eclipse_arch}/*.so
+%{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/*.jar
+%{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/*.xml
+
+%{_eclipsedir}/plugins/org.eclipse.cdt.debug.core_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.debug.mi.core_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.debug.mi.ui_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.debug.ui_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.doc.user_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.launch_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.make.core_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.make.ui_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.managedbuilder.core_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.managedbuilder.ui_*.*.*
+%{_eclipsedir}/plugins/org.eclipse.cdt.ui_*.*.*
