@@ -1,22 +1,21 @@
 Summary:	CDT - a set of plugins for Eclipse that implement a C/C++ IDE
 Summary(pl):	CDT - zestaw wtyczek do ¶rodowiska Eclipse implementuj±cy IDE C/C++
 Name:		eclipse-plugin-cdt
-%define		_ver_major	2.0
-%define		_ver_minor	2
+%define		_ver_major	2.1
+%define		_ver_minor	0
 Version:	%{_ver_major}.%{_ver_minor}
-Release:	2
-License:	CPL v0.5
+Release:	1
+License:	CPL v1.0
 Group:		Development/Languages
-Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/org.eclipse.cdt-%{version}-linux.x86.zip
-# Source0-md5:	c6e3c5f74fddae54a8ff242b42de4ade
-# Source0-size:	8486704
+%define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
+Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/%{version}/org.eclipse.cdt-%{version}-linux.%{_eclipse_arch}.zip
+# Source0-md5:	1542dee90e6c4451d51a8135f2860f41
 URL:		http://www.eclipse.org/cdt/
 BuildRequires:	unzip
 Requires:	eclipse >= 3.0
-ExclusiveArch:	%{ix86} ppc
+ExclusiveArch:	%{ix86} ppc ia64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
 %define		_eclipsedir  	%{_libdir}/eclipse
 
 %description
@@ -32,11 +31,14 @@ o nowe elementy wspomagaj±ce tworzenie aplikacji w jêzykach C i C++.
 %setup -q -c
 
 %build
-%ifarch %{ix86}
+%ifnarch %{ix86}
+rm -r eclipse/plugins/org.eclipse.cdt.core.linux_%{_ver_major}.%{_ver_minor}/os/linux/x86
+%endif
+%ifnarch ppc
 rm -r eclipse/plugins/org.eclipse.cdt.core.linux_%{_ver_major}.%{_ver_minor}/os/linux/ppc
 %endif
-%ifarch ppc
-rm -r eclipse/plugins/org.eclipse.cdt.core.linux_%{_ver_major}.%{_ver_minor}/os/linux/x86
+%ifnarch ia64
+rm -r eclipse/plugins/org.eclipse.cdt.core.linux_%{_ver_major}.%{_ver_minor}/os/linux/ia64
 %endif
 
 %install
