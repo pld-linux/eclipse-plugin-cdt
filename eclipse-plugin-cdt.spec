@@ -1,4 +1,5 @@
 Summary:	CDT - a set of plugins for Eclipse that implement a C/C++ IDE
+Summary(pl):	CDT - zestaw wtyczek do Eclipsa implementuj±cy IDE C/C++
 Name:		eclipse-plugin-cdt
 %define		_ver_major	2.0
 %define		_ver_minor	0
@@ -16,10 +17,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_eclipsedir  %{_datadir}/eclipse
 
 %description
-The CDT project provides a set of plugins that implement a C/C++ IDE.
-It adds a C/C++ Perspective to the Eclipse Workbench that supports
-C/C++ development with a number of views, wizards, a powerful editor,
-and a debugger.
+The CDT project adds a C/C++ Perspective to the Eclipse Workbench that
+supports C/C++ development with a number of views, wizards, a powerful
+editor, and a debugger.
+
+%description -l pl
+Projekt CDT rozszerza zintegrowane ¶rodowisko programistyczne Eklipsa
+o nowe elementy wspomagaj±ce tworzenie aplikacji w jêzykach C i C++.
 
 %prep
 %setup -q -c
