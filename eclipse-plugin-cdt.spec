@@ -11,6 +11,7 @@ Source0:	http://download.eclipse.org/tools/cdt/releases/new/zips/org.eclipse.cdt
 # Source0-md5:	c6e3c5f74fddae54a8ff242b42de4ade
 # Source0-size:	8486704
 URL:		http://www.eclipse.org/cdt/
+BuildRequires:	unzip
 Requires:	eclipse >= 3.0
 ExclusiveArch:	%{ix86} ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
