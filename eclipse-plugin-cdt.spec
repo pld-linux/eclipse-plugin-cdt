@@ -40,7 +40,7 @@ Source0:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.ecli
 %endif
 %if %{need_ppc}
 Source1:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.ppc.tar.gz
-# Source1-md5:	f16a8cbe6de0989c2adca4723a8d8af6
+# Source1-md5:	1e5e716bf6f0bfd56139c706d344142a
 %endif
 %if %{need_ia64}
 Source2:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.ia64.tar.gz
@@ -48,7 +48,7 @@ Source2:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.ecli
 %endif
 %if %{need_x8664}
 Source3:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.x86_64.tar.gz
-# Source3-md5:	0e078e332170794b3623d8e5078c1829
+# Source3-md5:	7d8e6c97e9a8055b0823292064f71dbd
 %endif
 URL:		http://www.eclipse.org/cdt/
 BuildRequires:	unzip
