@@ -1,4 +1,7 @@
-%bcond_with	incall	#include all tarballs
+#
+# Conditional build:
+%bcond_without	incall	# don't include all tarballs in .src.rpm
+#
 %define		need_x86	0
 %define		need_ppc	0
 %define		need_ia64	0
@@ -44,7 +47,7 @@ Source1:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.ecli
 %endif
 %if %{need_ia64}
 Source2:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.ia64.tar.gz
-# Source2-md5:	0e078e332170794b3623d8e5078c1829
+# Source2-md5:	80ba477131beb0c0682019a7705b1cfe
 %endif
 %if %{need_x8664}
 Source3:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.x86_64.tar.gz
@@ -53,7 +56,7 @@ Source3:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.ecli
 URL:		http://www.eclipse.org/cdt/
 BuildRequires:	unzip
 Requires:	eclipse >= 3.0
-ExclusiveArch:	%{ix86} ppc ia64
+ExclusiveArch:	%{ix86} %{x8664} ia64 ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
