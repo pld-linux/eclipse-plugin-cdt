@@ -27,31 +27,30 @@
 %endif
 %endif
 
-%define		_rc	RC1
 Summary:	CDT - a set of plugins for Eclipse that implement a C/C++ IDE
 Summary(pl):	CDT - zestaw wtyczek do ¶rodowiska Eclipse implementuj±cy IDE C/C++
 Name:		eclipse-plugin-cdt
 %define		_ver_major	3.0
 %define		_ver_minor	0
 Version:	%{_ver_major}.%{_ver_minor}
-Release:	0.%{_rc}.1
+Release:	0.1
 License:	CPL v1.0
 Group:		Development/Languages
 %if %{need_x86}
-Source0:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.x86.tar.gz
-# Source0-md5:	454b6e0279c83fd209d6ac839a459134
+Source0:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.x86.tar.gz
+# Source0-md5:	fd578bf9bcbcd89cdbf1480e792a5506
 %endif
 %if %{need_ppc}
-Source1:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.ppc.tar.gz
-# Source1-md5:	1e5e716bf6f0bfd56139c706d344142a
+Source1:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.ppc.tar.gz
+# Source1-md5:	92e83865c079406a231114f3fea74aa0
 %endif
 %if %{need_ia64}
-Source2:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.ia64.tar.gz
+Source2:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.ia64.tar.gz
 # Source2-md5:	80ba477131beb0c0682019a7705b1cfe
 %endif
 %if %{need_x8664}
-Source3:	http://download.eclipse.org/tools/cdt/builds/%{version}/%{_rc}/org.eclipse.cdt-%{version}-%{_rc}-linux.x86_64.tar.gz
-# Source3-md5:	7d8e6c97e9a8055b0823292064f71dbd
+Source3:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.x86_64.tar.gz
+# Source3-md5:	05f7bdaba4eb8fa0ac07c62c722a6f65
 %endif
 URL:		http://www.eclipse.org/cdt/
 BuildRequires:	unzip
