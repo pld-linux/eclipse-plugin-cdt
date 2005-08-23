@@ -46,7 +46,7 @@ Source1:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{versio
 %endif
 %if %{need_ia64}
 Source2:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.ia64.tar.gz
-# Source2-md5:	80ba477131beb0c0682019a7705b1cfe
+# Source2-md5:	ee07f4d21c3785e7d3b2b40b4669def0
 %endif
 %if %{need_x8664}
 Source3:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.x86_64.tar.gz
