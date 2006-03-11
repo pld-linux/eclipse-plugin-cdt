@@ -10,7 +10,7 @@
 %if %{with incall}
 %define		need_x86	1
 %define		need_ppc	1
-%define		need_x64	1
+%define		need_ia64	1
 %define		need_x8664	1
 %else
 %ifarch %{ix86}
@@ -46,7 +46,7 @@ Source1:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{versio
 %endif
 %if %{need_ia64}
 Source2:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.ia64.tar.gz
-# Source2-md5:	ee07f4d21c3785e7d3b2b40b4669def0
+# Source2-md5:	5cf7cc9acdbe357ba7f4b2ed979b4b0e
 %endif
 %if %{need_x8664}
 Source3:	http://download.eclipse.org/tools/cdt/releases/eclipse3.1/dist/%{version}/org.eclipse.cdt-%{version}-linux.x86_64.tar.gz
