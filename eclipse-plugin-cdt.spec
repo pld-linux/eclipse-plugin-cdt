@@ -33,7 +33,7 @@ Name:		eclipse-plugin-cdt
 %define		_ver_major	3.0
 %define		_ver_minor	2
 Version:	%{_ver_major}.%{_ver_minor}
-Release:	1
+Release:	2
 License:	CPL v1.0
 Group:		Development/Languages
 %if %{need_x86}
@@ -119,6 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux.%{_eclipse_arch}_*.*.*/os/linux
 %dir %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux.%{_eclipse_arch}_*.*.*/os/linux/%{_eclipse_arch}
 %attr(755,root,root) %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux.%{_eclipse_arch}_*.*.*/os/linux/%{_eclipse_arch}/*.so
+%dir %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*
 %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/*.jar
 %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/*.xml
 %{_eclipsedir}/plugins/org.eclipse.cdt.core.linux_*.*.*/*.html
