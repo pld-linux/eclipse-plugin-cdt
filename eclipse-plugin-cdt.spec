@@ -28,7 +28,7 @@
 %endif
 
 Summary:	CDT - a set of plugins for Eclipse that implement a C/C++ IDE
-Summary(pl.UTF-8):   CDT - zestaw wtyczek do środowiska Eclipse implementujący IDE C/C++
+Summary(pl.UTF-8):	CDT - zestaw wtyczek do środowiska Eclipse implementujący IDE C/C++
 Name:		eclipse-plugin-cdt
 %define		_ver_major	3.1
 %define		_ver_minor	0
