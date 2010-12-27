@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	incall	# don't include all tarballs in .src.rpm
 #
+%define		plugin_name	cdt
 %define		need_x86	0
 %define		need_ppc	0
 %define		need_ia64	0
@@ -29,23 +30,23 @@
 
 Summary:	CDT - a set of plugins for Eclipse that implement a C/C++ IDE
 Summary(pl.UTF-8):	CDT - zestaw wtyczek do środowiska Eclipse implementujący IDE C/C++
-Name:		eclipse-plugin-cdt
-%define		_ver_major	4.0
-%define		_ver_minor	3
+Name:		eclipse-plugin-%{plugin_name}
+%define		_ver_major	7.0
+%define		_ver_minor	1
 Version:	%{_ver_major}.%{_ver_minor}
-Release:	0.9
+Release:	0.1
 License:	CPL v1.0
 Group:		Development/Languages
-Source0:	http://download.eclipse.org/tools/cdt/releases/europa/dist/cdt-master-%{version}.zip
-# Source0-md5:	ff4564cbcec07c234222dd8a779a6b3f
+Source0:	http://download.eclipse.org/tools/cdt/releases/helios/dist/cdt-master-%{version}.zip
+# Source0-md5:	c84f16f67b197b4ea8e8a62a9e1d6cea
 URL:		http://www.eclipse.org/cdt/
 BuildRequires:	unzip
-Requires:	eclipse >= 3.3
+Requires:	eclipse >= 3.6
 ExclusiveArch:	%{ix86} %{x8664} ia64 ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
-%define		_eclipsedir  	%{_libdir}/eclipse
+%define		_plugindir	%{_libdir}/eclipse/dropins/%{plugin_name}
 
 %description
 The CDT project adds a C/C++ Perspective to the Eclipse Workbench that
@@ -80,17 +81,22 @@ rm -rf plugins/org.eclipse.cdt.*.x86_64_%{_ver_major}.*
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_eclipsedir}/{features,plugins}
+install -d $RPM_BUILD_ROOT%{_plugindir}/eclipse/{features,plugins}
 
-cp -r * $RPM_BUILD_ROOT%{_eclipsedir}
+cp -r * $RPM_BUILD_ROOT%{_plugindir}/eclipse
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_eclipsedir}/features/*.jar
-%{_eclipsedir}/plugins/net.sourceforge.lpg*.jar
-%{_eclipsedir}/plugins/org.eclipse.ant.*.jar
-%{_eclipsedir}/plugins/org.eclipse.cdt*.jar
-%{_eclipsedir}/plugins/org.eclipse.test*.jar
+%dir %{_plugindir}
+%dir %{_plugindir}/eclipse
+%dir %{_plugindir}/eclipse/features
+%{_plugindir}/eclipse/features/*.jar
+%dir %{_plugindir}/eclipse/plugins
+%{_plugindir}/eclipse/plugins/net.sourceforge.lpg*.jar
+%{_plugindir}/eclipse/plugins/org.eclipse.ant.*.jar
+%{_plugindir}/eclipse/plugins/org.eclipse.cdt*.jar
+%{_plugindir}/eclipse/plugins/org.eclipse.test*.jar
+%{_plugindir}/eclipse/plugins/org.eclipse.tm.tcf*.jar
