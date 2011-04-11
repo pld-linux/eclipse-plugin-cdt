@@ -34,7 +34,7 @@ Name:		eclipse-plugin-%{plugin_name}
 %define		_ver_major	7.0
 %define		_ver_minor	1
 Version:	%{_ver_major}.%{_ver_minor}
-Release:	0.1
+Release:	1
 License:	CPL v1.0
 Group:		Development/Languages
 Source0:	http://download.eclipse.org/tools/cdt/releases/helios/dist/cdt-master-%{version}.zip
