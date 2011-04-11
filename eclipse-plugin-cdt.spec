@@ -45,7 +45,6 @@ Requires:	eclipse >= 3.6
 ExclusiveArch:	%{ix86} %{x8664} ia64 ppc
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_eclipse_arch	%(echo %{_target_cpu} | sed 's/i.86/x86/;s/athlon/x86/;s/pentium./x86/')
 %define		_plugindir	%{_libdir}/eclipse/dropins/%{plugin_name}
 
 %description
@@ -81,9 +80,9 @@ rm -rf plugins/org.eclipse.cdt.*.x86_64_%{_ver_major}.*
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_plugindir}/eclipse/{features,plugins}
+install -d $RPM_BUILD_ROOT%{_plugindir}/{features,plugins}
 
-cp -r * $RPM_BUILD_ROOT%{_plugindir}/eclipse
+cp -r * $RPM_BUILD_ROOT%{_plugindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -91,12 +90,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %dir %{_plugindir}
-%dir %{_plugindir}/eclipse
-%dir %{_plugindir}/eclipse/features
-%{_plugindir}/eclipse/features/*.jar
-%dir %{_plugindir}/eclipse/plugins
-%{_plugindir}/eclipse/plugins/net.sourceforge.lpg*.jar
-%{_plugindir}/eclipse/plugins/org.eclipse.ant.*.jar
-%{_plugindir}/eclipse/plugins/org.eclipse.cdt*.jar
-%{_plugindir}/eclipse/plugins/org.eclipse.test*.jar
-%{_plugindir}/eclipse/plugins/org.eclipse.tm.tcf*.jar
+%dir %{_plugindir}/features
+%dir %{_plugindir}/plugins
+%{_plugindir}/features/*.jar
+%{_plugindir}/plugins/net.sourceforge.lpg*.jar
+%{_plugindir}/plugins/org.eclipse.ant.*.jar
+%{_plugindir}/plugins/org.eclipse.cdt*.jar
+%{_plugindir}/plugins/org.eclipse.test*.jar
+%{_plugindir}/plugins/org.eclipse.tm.tcf*.jar
