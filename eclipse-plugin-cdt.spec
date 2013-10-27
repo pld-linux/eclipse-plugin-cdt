@@ -1,44 +1,13 @@
-#
-# Conditional build:
-%bcond_without	incall	# don't include all tarballs in .src.rpm
-#
 %define		plugin_name	cdt
-%define		need_x86	0
-%define		need_ppc	0
-%define		need_ia64	0
-%define		need_x8664	0
-
-%if %{with incall}
-%define		need_x86	1
-%define		need_ppc	1
-%define		need_ia64	1
-%define		need_x8664	1
-%else
-%ifarch %{ix86}
-%define		need_x86	1
-%endif
-%ifarch ppc
-%define		need_ppc	1
-%endif
-%ifarch ia64
-%define		need_ia64	1
-%endif
-%ifarch %{x8664}
-%define		need_x8664	1
-%endif
-%endif
-
 Summary:	CDT - a set of plugins for Eclipse that implement a C/C++ IDE
 Summary(pl.UTF-8):	CDT - zestaw wtyczek do środowiska Eclipse implementujący IDE C/C++
 Name:		eclipse-plugin-%{plugin_name}
-%define		_ver_major	7.0
-%define		_ver_minor	2
-Version:	%{_ver_major}.%{_ver_minor}
+Version:	8.2.1
 Release:	1
 License:	CPL v1.0
 Group:		Development/Languages
-Source0:	http://download.eclipse.org/tools/cdt/releases/helios/dist/cdt-master-%{version}.zip
-# Source0-md5:	01a34887d24bded98769f44fccc51282
+Source0:	http://download.eclipse.org/tools/cdt/releases/kepler/sr1/cdt-master-%{version}.zip
+# Source0-md5:	c45a575ebafa29e748b19d643d77cdbf
 URL:		http://www.eclipse.org/cdt/
 BuildRequires:	unzip
 Requires:	eclipse >= 3.6
@@ -57,25 +26,20 @@ Projekt CDT rozszerza zintegrowane środowisko programistyczne Eclipse
 o nowe elementy wspomagające tworzenie aplikacji w językach C i C++.
 
 %prep
-%setup -q -c
+%setup -qc
 
-%build
-rm -rf plugins/org.eclipse.cdt.*aix*_%{_ver_major}.*
-rm -rf plugins/org.eclipse.cdt.*macosx*_%{_ver_major}.*
-rm -rf plugins/org.eclipse.cdt.*qnx*_%{_ver_major}.*
-rm -rf plugins/org.eclipse.cdt.*solaris*_%{_ver_major}.*
-rm -rf plugins/org.eclipse.cdt.*win32*_%{_ver_major}.*
+rm -rfv plugins/org.eclipse.cdt.core.aix*_*.*
+rm -rfv plugins/org.eclipse.cdt.core.macosx*_*.*
+rm -rfv plugins/org.eclipse.cdt.core.solaris*_*.*
+rm -rfv plugins/org.eclipse.cdt.core.win32*_*.*
 %ifnarch %{ix86}
-rm -rf plugins/org.eclipse.cdt.*.x86_%{_ver_major}.*
+rm -rfv plugins/org.eclipse.cdt.core.linux.x86_?.*
 %endif
-%ifnarch ppc
-rm -rf plugins/org.eclipse.cdt.*.ppc_%{_ver_major}.*
-%endif
-%ifnarch ia64
-rm -rf plugins/org.eclipse.cdt.*.ia64_%{_ver_major}.*
+%ifnarch ppc ppc64
+rm -rfv plugins/org.eclipse.cdt.core.linux.ppc64_*.*
 %endif
 %ifnarch %{x8664}
-rm -rf plugins/org.eclipse.cdt.*.x86_64_%{_ver_major}.*
+rm -rfv plugins/org.eclipse.cdt.core.linux.x86_64_*.*
 %endif
 
 %install
@@ -85,10 +49,7 @@ cp -a * $RPM_BUILD_ROOT%{_plugindir}
 
 rm $RPM_BUILD_ROOT%{_plugindir}/artifacts.jar
 rm $RPM_BUILD_ROOT%{_plugindir}/content.jar
-rm $RPM_BUILD_ROOT%{_plugindir}/epl-v10.html
-rm $RPM_BUILD_ROOT%{_plugindir}/notice.html
-rm $RPM_BUILD_ROOT%{_plugindir}/pack.properties
-rm $RPM_BUILD_ROOT%{_plugindir}/site.xml
+rm -r $RPM_BUILD_ROOT%{_plugindir}/binary
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -98,9 +59,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_plugindir}
 %dir %{_plugindir}/features
 %dir %{_plugindir}/plugins
-%{_plugindir}/features/*.jar
-%{_plugindir}/plugins/net.sourceforge.lpg*.jar
-%{_plugindir}/plugins/org.eclipse.ant.*.jar
-%{_plugindir}/plugins/org.eclipse.cdt*.jar
-%{_plugindir}/plugins/org.eclipse.test*.jar
-%{_plugindir}/plugins/org.eclipse.tm.tcf*.jar
+%{_plugindir}/META-INF
+%{_plugindir}/features/*.jar*
+%{_plugindir}/plugins/net.sourceforge.lpg*.jar*
+%{_plugindir}/plugins/org.eclipse.linuxtools.cdt.*.jar*
+%{_plugindir}/plugins/org.eclipse.cdt*.jar*
