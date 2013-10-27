@@ -81,8 +81,14 @@ rm -rf plugins/org.eclipse.cdt.*.x86_64_%{_ver_major}.*
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_plugindir}/{features,plugins}
+cp -a * $RPM_BUILD_ROOT%{_plugindir}
 
-cp -r * $RPM_BUILD_ROOT%{_plugindir}
+rm $RPM_BUILD_ROOT%{_plugindir}/artifacts.jar
+rm $RPM_BUILD_ROOT%{_plugindir}/content.jar
+rm $RPM_BUILD_ROOT%{_plugindir}/epl-v10.html
+rm $RPM_BUILD_ROOT%{_plugindir}/notice.html
+rm $RPM_BUILD_ROOT%{_plugindir}/pack.properties
+rm $RPM_BUILD_ROOT%{_plugindir}/site.xml
 
 %clean
 rm -rf $RPM_BUILD_ROOT
